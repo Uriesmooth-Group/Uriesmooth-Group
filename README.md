@@ -1499,3 +1499,28 @@ Our commitment is to build carefully, deploy responsibly, operate reliably and c
 Uriesmooth Ltd
 
 Global vision. Practical engineering. Built for growth.
+
+
+---
+
+## Official domain and deployment policy
+
+- **Primary corporate domain:** https://uriesmooth.org
+- **Secondary/legacy domain:** https://uriesmooth.online
+- Canonical website URLs and public company links must use `uriesmooth.org`.
+- Once both Cloudflare zones are active and verified, `uriesmooth.online` should issue a permanent HTTPS redirect to the equivalent path on `uriesmooth.org`, preserving path and query string.
+- Product services should use dedicated subdomains under `uriesmooth.org` (for example, `engine.uriesmooth.org` only after the service is deployed and verified). Existing product-specific subdomains must not be redirected blindly.
+- Do not change registrar nameservers until the exact nameservers assigned to each zone are copied from the corresponding Cloudflare zone Overview and DNSSEC is checked. Never reuse nameservers assigned to another zone.
+- DNS records, mail records, verification records, TLS mode, and redirect behavior must be inventoried before changing either zone.
+
+## Product portfolio status register
+
+| Product/repository | Observed state | Release policy |
+|---|---|---|
+| [Uriesmooth Vconnect](https://github.com/Uriesmooth-Group/Uriesmooth-Vconnect) | Early implementation; native foundations and backend health/identity foundation | Not public-call ready |
+| [Astra AI](https://github.com/Uriesmooth-Group/Uriesmooth-AstraAi) | Python multi-agent components and tests; latest Python test workflow failed on package import discovery | Not production ready |
+| [FlowState Pro](https://github.com/Uriesmooth-Group/flowstate-pro) | Next.js application foundation; latest CI passed | Requires product/security and production-readiness verification |
+| [Uriesmooth CapX](https://github.com/Uriesmooth-Group/Uriesmooth-Capx-) | Repository currently contains only a placeholder README | Scope and implementation required before deployment |
+| [Uriesmooth Group website](https://github.com/Uriesmooth-Group/uriesmooth-group-website) | Static corporate website; GitHub Pages workflow has successful runs | Custom-domain and DNS verification still required |
+
+A green CI workflow proves only the checks included in that workflow. It does not establish production security, operational reliability, regulatory approval, or public availability.
