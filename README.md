@@ -1518,9 +1518,9 @@ Global vision. Practical engineering. Built for growth.
 | Product/repository | Observed state | Release policy |
 |---|---|---|
 | [Uriesmooth Vconnect](https://github.com/Uriesmooth-Group/Uriesmooth-Vconnect) | Early implementation; native foundations and backend health/identity foundation | Not public-call ready |
-| [Astra AI](https://github.com/Uriesmooth-Group/Uriesmooth-AstraAi) | Python multi-agent components and tests; latest Python test workflow failed on package import discovery | Not production ready |
-| [FlowState Pro](https://github.com/Uriesmooth-Group/flowstate-pro) | Next.js application foundation; latest CI passed | Requires product/security and production-readiness verification |
+| [Astra AI](https://github.com/Uriesmooth-Group/Uriesmooth-AstraAi) | Python scaffold; importable package layout and fail-closed security gate updated; latest Python test CI passes | Not production ready |
+| [FlowState Pro](https://github.com/Uriesmooth-Group/flowstate-pro) | Next.js application foundation; docs/branding corrected; latest CI passes | Requires product/security and production-readiness verification |
 | [Uriesmooth CapX](https://github.com/Uriesmooth-Group/Uriesmooth-Capx-) | Repository currently contains only a placeholder README | Scope and implementation required before deployment |
-| [Uriesmooth Group website](https://github.com/Uriesmooth-Group/uriesmooth-group-website) | Static corporate website; GitHub Pages workflow has successful runs | Custom-domain and DNS verification still required |
+| [Uriesmooth Group website](https://github.com/Uriesmooth-Group/uriesmooth-group-website) | Static corporate website; primary .org CNAME, sitemap and robots files committed; GitHub Pages workflow passes | Custom-domain and DNS verification still required |
 
 A green CI workflow proves only the checks included in that workflow. It does not establish production security, operational reliability, regulatory approval, or public availability.
