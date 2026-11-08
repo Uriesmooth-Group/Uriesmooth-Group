@@ -1478,15 +1478,32 @@ Public claims must be traceable to evidence and approved through the appropriate
 Uriesmooth Ltd
 Global Technology Company
 
-- Primary website: https://uriesmooth.org
-- Secondary website: https://uriesmooth.online
-- GitHub: https://github.com/Uriesmooth-Group
-- Email: info@uriesmooth.online
-- Headquarters: Port Harcourt, Rivers State, Nigeria.
+Primary website: https://uriesmooth.org
+Secondary website: https://uriesmooth.online
+GitHub: https://github.com/Uriesmooth-Group
 
-For company, product, technology and business inquiries, use the official corporate contact channel.
+Public enquiries:
+- WhatsApp and calls: 09078782728
+- SMS: 09033553167
+- General email: hello@uriesmooth.online
+- Corporate information: info@uriesmooth.online
 
----
+Additional company email identities:
+- pascal@uriesmooth.online — executive correspondence.
+- developer@uriesmooth.online — engineering enquiries.
+- noreply@uriesmooth.online — automated notifications.
+- automation@uriesmooth.online — automation operations.
+- security@uriesmooth.org — security reports; provisioning to be verified.
+- app@uriesmooth.org — application support; provisioning to be verified.
+- ai@uriesmooth.org — AI enquiries; provisioning to be verified.
+
+Phone numbers are published in local Nigerian format. International format:
+- WhatsApp and calls: +2349078782728
+- SMS: +2349033553167
+
+Email addresses listed above are contact identities supplied for the company directory. Newly proposed .org addresses must not be represented as active mailboxes until creation and delivery tests are complete.
+
+Headquarters: Port Harcourt, Rivers State, Nigeria.
 
 35. Our Commitment
 
