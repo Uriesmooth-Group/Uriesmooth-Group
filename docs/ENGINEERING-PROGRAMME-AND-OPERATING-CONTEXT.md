@@ -221,3 +221,14 @@ When continuing this programme:
 ### App and specialist capability context
 
 The requested System & Utility APIs and Custom Ecosystem Microservices & Skills catalogue is now preserved in Section 5 of this document as an explicit capability requirements register. Each capability remains unverified until connection, authorization scopes, implementation and operational behavior are checked. The list is not blanket permission to connect personal or customer data to AI Core.
+
+### Documentation-triggered Railway deployments — 2026-11-11
+
+- Seven documentation-only commits to `Uriesmooth-Group/Uriesmooth-Vconnect` `main` triggered Railway's existing production source-deploy automation. This was not an intended application release.
+- All seven deployments reported `SUCCESS`. The latest deployment, `8da912b4-d5a3-4e35-b6e1-26500c8fe421`, corresponds to commit `4a4b7bce649bd290c8bd09cbcf3503bfb77f5f8e`.
+- Post-deploy verification: Vconnect Backend online, 1/1 replicas, zero active warnings/criticals; PostgreSQL online, 1/1 replicas, persistent volume attached; no pending production work.
+- No production variables, database, volume, or service configuration were intentionally changed. The existing auto-deploy trigger was not modified.
+- A corrective documentation-only PR was opened on a non-production branch: [VConnect PR #14](https://github.com/Uriesmooth-Group/Uriesmooth-Vconnect/pull/14). It remains open and unmerged.
+- **New operating rule:** do not commit documentation-only changes directly to VConnect `main`. Use a review branch and inspect Railway source-deploy/watch-path behavior before merging. Do not change deployment triggers or watch patterns without a tested plan.
+
+The PR-13 TLS verification setting remains staged only in its preview environment; it has not been applied. The production deployment audit and PR-13 remediation are separate issues.
