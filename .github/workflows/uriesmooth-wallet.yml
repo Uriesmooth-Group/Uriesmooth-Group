@@ -1,0 +1,31 @@
+name: Uriesmooth Wallet foundation checks
+
+on:
+  pull_request:
+    paths:
+      - "products/uriesmooth-wallet/**"
+      - ".github/workflows/uriesmooth-wallet.yml"
+  push:
+    branches: [main]
+    paths:
+      - "products/uriesmooth-wallet/**"
+      - ".github/workflows/uriesmooth-wallet.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  wallet-foundation:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: products/uriesmooth-wallet
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm run check
+      - run: npm test
+      - name: Build container image
+        run: docker build -t uriesmooth-wallet:ci .

@@ -9,7 +9,6 @@ const ROOT = resolve(fileURLToPath(new URL("../public/", import.meta.url)));
 const MIME = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".svg": "image/svg+xml" };
 const WINDOW_MS = 60_000;
 const MAX_REQUESTS = 120;
-const MAX_BODY_BYTES = 8_192;
 const counters = new Map();
 const provider = createPaymentProvider();
 
@@ -39,23 +38,14 @@ function isRateLimited(req) {
   return current.count > MAX_REQUESTS;
 }
 
-async function readBoundedBody(req) {
-  let size = 0;
-  const chunks = [];
-  for await (const chunk of req) {
-    size += chunk.length;
-    if (size > MAX_BODY_BYTES) {
-      const error = new Error("Request body too large");
-      error.status = 413;
-      throw error;
-    }
-    chunks.push(chunk);
-  }
-  return Buffer.concat(chunks).toString("utf8");
-}
-
 async function serveStatic(pathname, res) {
-  const requested = pathname === "/" ? "index.html" : decodeURIComponent(pathname.slice(1));
+  let requested;
+  try {
+    requested = pathname === "/" ? "index.html" : decodeURIComponent(pathname.slice(1));
+  } catch {
+    sendJson(res, 400, { error: { code: "INVALID_PATH", message: "Invalid path." } });
+    return;
+  }
   const target = resolve(ROOT, requested);
   if (target !== ROOT && !target.startsWith(ROOT + sep)) {
     sendJson(res, 400, { error: { code: "INVALID_PATH", message: "Invalid path." } });
@@ -100,20 +90,9 @@ export function createServer() {
       return;
     }
     if (req.method === "POST" && url.pathname === "/api/v1/payment-methods") {
-      try {
-        const body = await readBoundedBody(req);
-        if (body.length) JSON.parse(body);
-      } catch (error) {
-        sendJson(res, error.status ?? 400, { error: { code: error.status === 413 ? "BODY_TOO_LARGE" : "INVALID_JSON", message: error.status === 413 ? "Request body too large." : "A valid JSON body is required." } });
-        return;
-      }
-      try {
-        await provider.createPaymentMethod();
-      } catch (error) {
-        sendJson(res, 503, { error: { code: error.code ?? "PAYMENT_PROVIDER_UNAVAILABLE", message: "Card enrollment is unavailable until an approved provider integration is configured." } });
-        return;
-      }
-      sendJson(res, 501, { error: { code: "NOT_IMPLEMENTED", message: "No payment provider adapter is enabled." } });
+      // Intentionally do not read or parse the request body: no card data or
+      // payment credential payload is accepted by this prototype.
+      sendJson(res, 503, { error: { code: "PROVIDER_NOT_CONFIGURED", message: "Card enrollment is disabled. Use only an approved provider-hosted tokenization flow when enabled." } });
       return;
     }
     if (url.pathname.startsWith("/api/")) {
