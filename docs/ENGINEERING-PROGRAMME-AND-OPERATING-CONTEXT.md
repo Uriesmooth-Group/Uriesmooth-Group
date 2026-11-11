@@ -70,6 +70,10 @@ Intended responsibilities:
 
 **Next action:** an authorized account/workspace administrator must resolve plan/resource capacity or provide access to the intended Uriesmooth Group team workspace. Re-check available workspaces and capacity before creating the isolated project. Do not delete, resize, repurpose, or move existing production resources to make room.
 
+### Railway workspace and capacity decision
+
+Railway's current documentation states that new workspaces for organizations can be created on Pro or Enterprise plans. The published Pro subscription is $20/month and includes $20 of resource usage; usage above the included amount is billed separately. Hobby is $5/month and includes $5 of usage, but the workspace documentation identifies Pro/Enterprise as the plans for creating additional workspaces and team collaboration. See [Railway Workspaces](https://docs.railway.com/projects/workspaces) and [Railway Pricing Plans](https://docs.railway.com/pricing/plans). This makes Pro the lowest published tier identified for a dedicated team workspace; it is not an automatic recommendation to purchase. Before upgrading, the account owner should inspect the active plan, current usage, projected AI Core service costs, and billing controls. No plan change or payment has been made.
+
 **Implementation gates:** approve threat model and data classification; define service/API contracts; create isolated non-production environment; configure secrets through secure variable controls; add health/readiness and tests; validate authentication, tenant isolation, quotas, model routing and audit trails; then stage and deploy only with explicit release approval. A design specification is not a deployed gateway.
 
 ### P2 — Product data foundations and data-flow inventory
