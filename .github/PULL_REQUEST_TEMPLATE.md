@@ -40,3 +40,10 @@ Issue/task ID:
 - [ ] I approve this change for merge.
 
 **Reminder:** Generated code, passing tests, or an opened PR alone do not constitute acceptance. Production deployment is a separate verified milestone.
+
+## Data engineering and AI Core reporting (when applicable)
+
+- [ ] Data sources, schemas/contracts, quality checks, retention, lineage, and recovery implications were considered where applicable.
+- [ ] Any new data technology is justified by workload requirements, operational ownership, security, and total cost; no technology is added solely because it appears in the company reference catalogue.
+- [ ] AI Core / engineering measurement events contain only authorized, minimized engineering metadata and exclude customer, financial, identity, voice, credential, and regulated payloads by default.
+- [ ] Measurement submission is authenticated, scoped, auditable, and safe to retry; product data and engineering telemetry remain access-controlled and logically separated.
