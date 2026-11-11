@@ -1546,10 +1546,10 @@ The active company priorities, product descriptions, deployment boundaries, data
 
 ## Uriesmooth Credora — Product Foundation
 
-The Credora product foundation is maintained at [products/uriesmooth-credora](products/uriesmooth-credora/README.md). It defines the product scope, modular architecture, ledger invariants, API boundaries, security and market-readiness controls, delivery roadmap, initial TypeScript service scaffold and CI workflow.
+The Credora product foundation is maintained at [products/uriesmooth-credora](products/uriesmooth-credora/README.md), with a [staging deployment runbook](products/uriesmooth-credora/docs/DEPLOYMENT.md). It defines the product scope, modular architecture, ledger invariants, API boundaries, security and market-readiness controls, delivery roadmap, initial TypeScript service scaffold and CI workflow.
 
 **Product identity:** Credora by Uriesmooth  
 **Tagline:** Finance. Freedom. Forward.  
-**Status:** Architecture and starter scaffold committed; not a production financial service.
+**Status:** Deployment-ready starter scaffold committed; Railway provisioning is blocked by the connected workspace's free-plan resource limit. Not a production financial service.
 
 The dedicated `Uriesmooth-Group/uriesmooth-credora` repository remains a repository-creation task. Until it is created through an authorized GitHub repository-creation workflow, this foundation remains in the central company repository. Existing products, services and data are not being overwritten or migrated.
