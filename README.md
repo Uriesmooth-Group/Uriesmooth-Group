@@ -178,7 +178,7 @@ Uriesmooth Carrier Cloud| Cloud and carrier-oriented infrastructure
 Uriesmooth Website| Corporate digital presence
 Uriesmooth Commerce| Digital commerce
 Uriesmooth Delivery| Delivery and logistics technology
-Uriesmooth Credora| Credit, lending and financial management
+Uriesmooth Credora| Responsible BNPL, credit, repayment and financial management
 
 Additional Ventures and Initiatives
 
@@ -211,16 +211,27 @@ Any deployment involving voice, likeness, facial or biometric data must include 
 Uriesmooth Credora
 
 Product identity: Credora by Uriesmooth.
+Positioning: Financial flexibility. Engineered for progress.
+Supporting line: Buy today. Pay responsibly. Build tomorrow.
 
-Planned capabilities include:
+Uriesmooth Credora is a financial technology platform in development, designed to connect flexible purchasing, responsible credit, installment repayment and financial management. Its Nigeria-first, international-ready product direction includes:
 
-- Loan management.
-- Buy Now, Pay Later workflows.
-- Debt repayment and clearance management.
-- Credit monitoring.
-- Responsible credit rebuilding.
+- Credora PayLater: responsible Buy Now, Pay Later for eligible purchases through clear, disclosed installment plans.
+- Credora Loans: loan application and servicing workflows through appropriately authorized lenders or financing partners.
+- Credora Wallet and Payments: account views and payment orchestration under an approved operating model.
+- Credora VTU: airtime, mobile data, electricity and cable-service transactions through contracted providers.
+- Credora Rewards: cashback, loyalty and referral programs with auditable rules.
+- Credora DebtCare: debt organization, repayment planning, settlement coordination and dispute tracking.
+- Credora CreditScore: credit education and authorized credit-data monitoring and correction workflows.
+- Credora Trust: identity, consent, fraud prevention, audit and customer-protection controls.
 
-Its architecture should support international expansion, including configurable countries, currencies, financial providers and jurisdiction-specific regulatory requirements.
+The platform is designed around transparent total-cost disclosures, affordability assessment, explicit customer acceptance, secure payment processing, automated installment management and auditable financial records.
+
+Its financial architecture should use a currency-aware immutable double-entry ledger, durable database-backed idempotency, reliable installment scheduling, signed provider webhooks, transactional outbox/inbox processing and payment reconciliation. Posted ledger entries are corrected through compensating entries, never direct balance mutation.
+
+The architecture should support configurable countries, currencies, payment providers, credit policies, localization and jurisdiction-specific controls. Nigeria is the initial market configuration, not the limit of the product's intended expansion.
+
+These capabilities describe the product direction and do not imply that every module is implemented, commercially available, connected to a live provider or authorized for operation.
 
 Financial products must not be released in a jurisdiction until applicable legal, licensing, consumer-protection and data-protection requirements have been reviewed.
 
