@@ -24,3 +24,7 @@ This repository is part of Uriesmooth Group. Follow the company-wide [AI Enginee
 
 ## Completion report
 State the files and behavior changed, acceptance criteria addressed, tests/checks actually run with results, risks and limitations, human acceptance status, and deployment status separately. Distinguish proposed, committed, merged, and deployed work.
+
+## Data engineering and AI Core measurement
+
+Follow the company [Data Engineering Architecture Principles](https://github.com/Uriesmooth-Group/Uriesmooth-Group/blob/main/docs/DATA-ENGINEERING-ARCHITECTURE-PRINCIPLES.md) when designing or changing data ingestion, storage, processing, analytics, orchestration, lineage, or retention. Treat its technologies as evaluation options, not mandatory dependencies. Preserve the product's existing architecture unless workload evidence and an approved change justify a transition. For AI Core or engineering measurement integrations, follow the [AI Core Engineering Measurement Integration](https://github.com/Uriesmooth-Group/Uriesmooth-Group/blob/main/docs/AI-CORE-ENGINEERING-MEASUREMENT-INTEGRATION.md); send only minimized, authorized engineering metadata, never customer, financial, identity, voice, credential, or regulated payloads by default. Keep telemetry and product data access-controlled and logically separated.
