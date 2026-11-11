@@ -1538,3 +1538,7 @@ The following company-wide standards apply across Uriesmooth Group repositories.
 - [CI and Pull Request Enforcement Plan](docs/CI-AND-PULL-REQUEST-ENFORCEMENT-PLAN.md) — repository-specific checks, review rules and staged enforcement gates.
 
 These documents define standards and plans. They do not, by themselves, prove product capabilities, compliance, deployment, or branch-protection enforcement.
+
+## Engineering programme and operating context
+
+The active company priorities, product descriptions, deployment boundaries, data-flow inventory, AI Core provisioning status, CI enforcement gates, pilot rules, and requested app/tool ecosystem are maintained in the [Engineering Programme and Operating Context](docs/ENGINEERING-PROGRAMME-AND-OPERATING-CONTEXT.md).
