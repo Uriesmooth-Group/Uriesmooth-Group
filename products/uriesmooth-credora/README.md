@@ -54,9 +54,13 @@ Uriesmooth Credora is a planned, globally extensible financial technology ecosys
 
 The initial delivery should be a modular monolith with strict module boundaries. Extract services only when scale, team ownership, security isolation or operational requirements justify it.
 
+## Deployment
+
+See [Deployment Runbook](docs/DEPLOYMENT.md) for the Railway staging configuration, health checks and go-live gates. Railway project creation is currently blocked by the connected workspace's free-plan resource limit; no Railway project or deployment has been created yet.
+
 ## Development status
 
-**Status: Foundation and architecture setup. Not production-ready and not a live financial service.**
+**Status: Deployment-ready starter foundation; staging infrastructure provisioning is blocked by the Railway workspace plan limit. Not production-ready and not a live financial service.**
 
 No live payment, lending, VTU provider, credit bureau or bank credentials belong in this repository. Sandbox integrations, migrations, automated tests, operational controls, partner approvals and jurisdiction-specific reviews are required before launch.
 
