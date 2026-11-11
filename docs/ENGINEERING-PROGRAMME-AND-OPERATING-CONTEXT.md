@@ -197,3 +197,27 @@ When continuing this programme:
 7. State what changed, what was verified, what remains blocked, and what was not touched.
 
 **Last verified boundaries:** VConnect staging and production services reported SUCCESS and no pending Railway changes on 2026-11-11. AI Core project provisioning is blocked by the connected account's free-plan resource limit and absence of a visible team workspace. GitHub branch-protection settings remain unknown because the integration lacks permission to read them. The pilot has four real open candidate tasks, not a completed 10–15 task evaluation.
+
+## 8. Verified operational update — 2026-11-11
+
+### VConnect staging and production
+
+- Re-inspected Railway staging and production environments and their full resource inventories.
+- Dedicated staging project has Vconnect Backend on `feature/vconnect-staging-db-tls` and PostgreSQL 16 with a 500 MB persistent volume; both latest deployments reported SUCCESS.
+- Production project has Vconnect Backend on `main` and PostgreSQL 18 with a 500 MB persistent volume; both latest deployments reported SUCCESS. No production resource or variable was changed.
+- PR-13 preview environment in the production project has a failed backend deployment at the readiness health check. The Docker build and TypeScript compile succeeded; runtime exited because the PR branch requires `DATABASE_SSL_REJECT_UNAUTHORIZED=true` in production mode. Logs then show `/health/ready` returning service unavailable.
+- A non-destructive staged patch sets this boolean to `true` on the PR-13 backend only. Patch ID: `940818f4-7d30-4542-ad42-4e546eec4ccb`. It remains STAGED and has not been deployed. Production and dedicated staging variables were not modified.
+- PR-13 has both `Postgres-DPOU` and `Postgres` services. Postgres-DPOU has a separate 500 MB volume. The backend's actual DATABASE_URL target remains unverified because Railway redacts variable values. Confirm database ownership and TLS CA/server-name behavior before applying the staged patch.
+- Product-specific evidence and remediation sequence are recorded in [VConnect Railway Environment Evidence](https://github.com/Uriesmooth-Group/Uriesmooth-Vconnect/blob/main/docs/RAILWAY-ENVIRONMENT-EVIDENCE.md).
+
+### Product data inventory refinements
+
+- FlowState Pro's current repository documents in-memory workflow/execution repositories; no live Railway database attachment is established for it.
+- Astra AI's current repository documents an in-memory agent runtime; no live persistence layer is established.
+- URIESMOOTH-MMV's repository says application/model integrations and deployment remain pending verification; no database integration is established.
+- VConnect's Railway PostgreSQL instances are infrastructure facts, but schemas, database ownership, connection targets, migrations, backup/restore evidence and data flows still require repository/configuration verification.
+- Credora and Uriesmooth Live Engine database topology remains unknown until their actual repository and deployment context are inspected.
+
+### App and specialist capability context
+
+The requested System & Utility APIs and Custom Ecosystem Microservices & Skills catalogue is now preserved in Section 5 of this document as an explicit capability requirements register. Each capability remains unverified until connection, authorization scopes, implementation and operational behavior are checked. The list is not blanket permission to connect personal or customer data to AI Core.
