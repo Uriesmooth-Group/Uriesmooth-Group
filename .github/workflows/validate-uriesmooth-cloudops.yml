@@ -4,10 +4,12 @@ on:
   pull_request:
     paths:
       - "platforms/uriesmooth-cloudops/**"
+      - ".github/workflows/validate-uriesmooth-cloudops.yml"
   push:
     branches: [main]
     paths:
       - "platforms/uriesmooth-cloudops/**"
+      - ".github/workflows/validate-uriesmooth-cloudops.yml"
   workflow_dispatch:
 
 permissions:
@@ -21,13 +23,15 @@ jobs:
         uses: actions/checkout@v4
       - name: Validate operation contract
         run: python -c "import json; from pathlib import Path; p=Path('platforms/uriesmooth-cloudops/contracts/operation-request.schema.json'); d=json.loads(p.read_text()); assert d['type']=='object'; assert 'request_id' in d['required']; print('CloudOps operation schema: valid JSON')"
-      - name: Verify foundation documents
+      - name: Verify product and deployment documents
         run: |
           test -s platforms/uriesmooth-cloudops/README.md
+          test -s platforms/uriesmooth-cloudops/docs/PRODUCT-POSITIONING.md
           test -s platforms/uriesmooth-cloudops/docs/ARCHITECTURE.md
           test -s platforms/uriesmooth-cloudops/docs/SECURITY-GOVERNANCE.md
           test -s platforms/uriesmooth-cloudops/docs/OCI-ADAPTER.md
           test -s platforms/uriesmooth-cloudops/docs/FINOPS.md
           test -s platforms/uriesmooth-cloudops/docs/SLACK-INTEGRATION.md
           test -s platforms/uriesmooth-cloudops/docs/ROADMAP.md
-          echo "CloudOps foundation files: present"
+          test -s platforms/uriesmooth-cloudops/docs/DEPLOYMENT-RUNBOOK.md
+          echo "CloudOps foundation and deployment documents: present"
