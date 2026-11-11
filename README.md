@@ -1542,3 +1542,14 @@ These documents define standards and plans. They do not, by themselves, prove pr
 ## Engineering programme and operating context
 
 The active company priorities, product descriptions, deployment boundaries, data-flow inventory, AI Core provisioning status, CI enforcement gates, pilot rules, and requested app/tool ecosystem are maintained in the [Engineering Programme and Operating Context](docs/ENGINEERING-PROGRAMME-AND-OPERATING-CONTEXT.md).
+
+
+## Uriesmooth Credora — Product Foundation
+
+The Credora product foundation is maintained at [products/uriesmooth-credora](products/uriesmooth-credora/README.md). It defines the product scope, modular architecture, ledger invariants, API boundaries, security and market-readiness controls, delivery roadmap, initial TypeScript service scaffold and CI workflow.
+
+**Product identity:** Credora by Uriesmooth  
+**Tagline:** Finance. Freedom. Forward.  
+**Status:** Architecture and starter scaffold committed; not a production financial service.
+
+The dedicated `Uriesmooth-Group/uriesmooth-credora` repository remains a repository-creation task. Until it is created through an authorized GitHub repository-creation workflow, this foundation remains in the central company repository. Existing products, services and data are not being overwritten or migrated.
