@@ -76,3 +76,17 @@ Copy this table for each task:
 6. Is the sample large and consistent enough to support the comparison being made?
 
 Do not use this log to rank individual contributors. Its purpose is process improvement and evidence-based configuration selection.
+
+
+## Controlled pilot — initial candidate register
+
+These are real open issues discovered in the organization tracker. They are candidate tasks only; they have not been marked accepted or closed, and no AI usage, cost, time, rework, correction, or verification metrics have been inferred. Start measurement when work actually begins and update each record with evidence.
+
+| Task ID / issue | Repository | Task class (provisional) | Outcome | AI/tool, attempts, time, cost, rework, discrepancies, corrections |
+|---|---|---|---|---|
+| [Uriesmooth Group #4](https://github.com/Uriesmooth-Group/Uriesmooth-Group/issues/4) — Roll out AI engineering quality standard across Uriesmooth Group | Uriesmooth-Group/Uriesmooth-Group | Process / infrastructure | Open — candidate | Unknown; capture prospectively |
+| [VConnect #10](https://github.com/Uriesmooth-Group/Uriesmooth-Vconnect/issues/10) — Implement authenticated one-to-one call lifecycle and signaling foundation | Uriesmooth-Group/Uriesmooth-Vconnect | Feature / security | Open — candidate | Unknown; capture prospectively |
+| [Astra AI #2](https://github.com/Uriesmooth-Group/Uriesmooth-AstraAi/issues/2) — Establish trusted identity and authorization policy boundary | Uriesmooth-Group/Uriesmooth-AstraAi | Security / infrastructure | Open — candidate | Unknown; capture prospectively |
+| [FlowState Pro #2](https://github.com/Uriesmooth-Group/flowstate-pro/issues/2) — Implement durable PostgreSQL persistence for workflows and executions | flowstate-pro | Feature / infrastructure | Open — candidate | Unknown; capture prospectively |
+
+**Pilot sample status:** 4 of the target 10–15 candidate tasks identified. This is not yet a measured result. Add 6–11 more real tasks before drawing pilot conclusions. Do not backfill unknown measurements from estimates.
