@@ -38,7 +38,48 @@ document.querySelectorAll("[data-profile]").forEach(b=>b.onclick=()=>$("#profile
 function exportHtml(){const clone=document.documentElement.cloneNode(true);clone.querySelectorAll(".view").forEach(x=>x.classList.toggle("hidden",x.id!=="dashboard"));clone.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x.dataset.view==="dashboard"));const blob=new Blob(["<!doctype html>\n"+clone.outerHTML],{type:"text/html;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="uriesmooth_omnicare.html";a.click();URL.revokeObjectURL(url)}
 $("#export").onclick=exportHtml;$("#downloadSource").onclick=exportHtml;
 $("#copySource").onclick=async()=>{try{await navigator.clipboard.writeText(document.documentElement.outerHTML);$("#health").textContent="Source copied"}catch{$("#health").textContent="Clipboard unavailable"}};
-async function refreshRepo(){show("repository");$("#repoMeta").textContent="Loading live GitHub data…";try{const r=await fetch("/api/repository");if(!r.ok)throw new Error("API status "+r.status);repoData=await r.json();$("#repoMeta").textContent=repoData.metadata.fullName+" · "+repoData.configuredBranch;$("#repoState").textContent="Connected";$("#health").textContent="Repository data verified";$("#metadata").innerHTML=[["Visibility",repoData.metadata.private?"Private":"Public"],["Default branch",repoData.metadata.defaultBranch],["Branches",repoData.branches.length],["Open issues",repoData.metadata.openIssues],["Last push",repoData.metadata.pushedAt||"Unknown"],["Fetched",repoData.fetchedAt]].map(([a,b])=>'<div class="item"><span>'+a+'</span><b>'+b+'</b></div>').join("");$("#branches").innerHTML=repoData.branches.map(b=>'<div class="item"><span>'+b.name+'</span><code>'+b.sha.slice(0,7)+'</code></div>').join("");$("#commits").innerHTML=repoData.commits.map(c=>'<div class="item"><span><a style="color:var(--blue)" href="'+c.url+'" target="_blank" rel="noopener">'+c.shortSha+'</a> · '+c.message.split("\n")[0].slice(0,70)+'<br><small class="muted">'+c.author+' · '+c.date+'</small></span></div>').join("");$("#manifest").textContent=repoData.manifest||"package.json not found at configured product path.";$("#sourceView").textContent=repoData.source||"HTML source not found at configured product path.";}catch(e){$("#repoState").textContent="Unavailable";$("#health").textContent="GitHub data unavailable";$("#repoMeta").textContent="Could not verify repository status: "+e.message;$("#commits").textContent="Live commit history unavailable. No sample data is shown.";}}
+function addRow(parent, label, value) {
+  const row=document.createElement("div"); row.className="item";
+  const left=document.createElement("span"); left.textContent=label;
+  const right=document.createElement("b"); right.textContent=String(value ?? "Unknown");
+  row.append(left,right); parent.append(row);
+}
+async function refreshRepo(){
+  show("repository"); $("#repoMeta").textContent="Loading live GitHub data…";
+  try {
+    const response=await fetch("/api/repository");
+    if(!response.ok) throw new Error("API status "+response.status);
+    repoData=await response.json();
+    $("#repoMeta").textContent=repoData.metadata.fullName+" · "+repoData.configuredBranch;
+    $("#repoState").textContent="Connected"; $("#health").textContent="Repository data verified";
+    const metadata=$("#metadata"); metadata.replaceChildren();
+    [["Visibility",repoData.metadata.private?"Private":"Public"],["Default branch",repoData.metadata.defaultBranch],["Branches",repoData.branches.length],["Open issues",repoData.metadata.openIssues],["Last push",repoData.metadata.pushedAt||"Unknown"],["Fetched",repoData.fetchedAt]].forEach(([k,v])=>addRow(metadata,k,v));
+    const branches=$("#branches"); branches.replaceChildren();
+    repoData.branches.forEach(branch=>{
+      const row=document.createElement("div"); row.className="item";
+      const name=document.createElement("span"); name.textContent=branch.name;
+      const sha=document.createElement("code"); sha.textContent=branch.sha.slice(0,7);
+      row.append(name,sha); branches.append(row);
+    });
+    const commits=$("#commits"); commits.replaceChildren();
+    repoData.commits.forEach(commit=>{
+      const row=document.createElement("div"); row.className="item";
+      const info=document.createElement("span");
+      const link=document.createElement("a"); link.style.color="var(--blue)"; link.href=commit.url;
+      link.target="_blank"; link.rel="noopener noreferrer"; link.textContent=commit.shortSha;
+      const message=document.createTextNode(" · "+commit.message.split("\n")[0].slice(0,70));
+      const details=document.createElement("small"); details.className="muted";
+      details.textContent=commit.author+" · "+(commit.date||"Unknown");
+      info.append(link,message,document.createElement("br"),details); row.append(info); commits.append(row);
+    });
+    $("#manifest").textContent=repoData.manifest||"package.json not found at configured product path.";
+    $("#sourceView").textContent=repoData.source||"HTML source not found at configured product path.";
+  } catch(error) {
+    $("#repoState").textContent="Unavailable"; $("#health").textContent="GitHub data unavailable";
+    $("#repoMeta").textContent="Could not verify repository status: "+error.message;
+    $("#commits").textContent="Live commit history unavailable. No sample data is shown.";
+  }
+}
 $("#refreshRepo").onclick=refreshRepo;$("#nav").addEventListener("click",e=>{if(e.target.closest('[data-view="repository"]'))refreshRepo()});
 fetch("/api/health").then(r=>r.json()).then(d=>$("#health").textContent="API "+d.status).catch(()=>{$("#health").textContent="Standalone mode"});
 </script></body></html>
