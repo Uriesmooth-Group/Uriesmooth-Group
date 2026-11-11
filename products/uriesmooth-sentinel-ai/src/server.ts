@@ -6,6 +6,7 @@ import rateLimit from "express-rate-limit";
 import pg from "pg";
 import pino from "pino";
 import pinoHttp from "pino-http";
+import { resolve } from "node:path";
 import { z } from "zod";
 
 const envSchema = z.object({
@@ -185,6 +186,7 @@ app.patch("/api/v1/tasks/:id", async (req, res, next) => {
   } finally { client.release(); }
 });
 
+app.use(express.static(resolve(process.cwd(), "public"), { index: "index.html", etag: true, maxAge: env.NODE_ENV === "production" ? "1h" : 0 }));
 app.use((_req, res) => { res.status(404).json({ error: "not_found" }); });
 app.use((error: unknown, _req: Request, res: Response, _next: NextFunction) => {
   logger.error({ err: error }, "request failed");
