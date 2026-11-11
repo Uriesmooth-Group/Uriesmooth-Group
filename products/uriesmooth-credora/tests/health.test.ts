@@ -2,8 +2,9 @@ import { afterEach, describe, expect, it } from "vitest";
 import { createCredoraApp } from "../src/app.js";
 import type { Server } from "node:http";
 
-describe("Credora health endpoints", () => {
+describe("Credora HTTP foundation", () => {
   let server: Server | undefined;
+  let baseUrl = "";
 
   afterEach(async () => {
     if (!server?.listening) return;
@@ -12,13 +13,36 @@ describe("Credora health endpoints", () => {
     });
   });
 
-  it("reports liveness without claiming production readiness", async () => {
+  async function startServer(): Promise<void> {
     server = createCredoraApp();
     await new Promise<void>((resolve) => server?.listen(0, "127.0.0.1", resolve));
     const address = server.address();
     if (!address || typeof address === "string") throw new Error("test server did not bind");
+    baseUrl = `http://127.0.0.1:${address.port}`;
+  }
 
-    const baseUrl = `http://127.0.0.1:${address.port}`;
+  it("serves product metadata while keeping financial capabilities disabled", async () => {
+    await startServer();
+    const response = await fetch(baseUrl);
+    expect(response.status).toBe(200);
+    expect(await response.json()).toMatchObject({
+      name: "Uriesmooth Credora",
+      product: "Credora by Uriesmooth",
+      status: "foundation",
+      capabilities: {
+        vtu: "disabled",
+        wallet: "disabled",
+        rewards: "disabled",
+        paylater: "disabled",
+        lending: "disabled",
+        debtcare: "disabled",
+        creditBureau: "disabled"
+      }
+    });
+  });
+
+  it("reports liveness without claiming production readiness", async () => {
+    await startServer();
     const live = await fetch(`${baseUrl}/health/live`);
     expect(live.status).toBe(200);
     expect(await live.json()).toEqual({
@@ -35,12 +59,8 @@ describe("Credora health endpoints", () => {
   });
 
   it("returns 404 for unknown routes", async () => {
-    server = createCredoraApp();
-    await new Promise<void>((resolve) => server?.listen(0, "127.0.0.1", resolve));
-    const address = server.address();
-    if (!address || typeof address === "string") throw new Error("test server did not bind");
-
-    const response = await fetch(`http://127.0.0.1:${address.port}/unknown`);
+    await startServer();
+    const response = await fetch(`${baseUrl}/unknown`);
     expect(response.status).toBe(404);
   });
 });
