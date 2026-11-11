@@ -1,80 +1,92 @@
 # Uriesmooth CloudOps — Deployment Runbook
 
-This runbook defines the path from the current repository foundation to a verified first deployment. It is a controlled implementation plan, not evidence that a service has already been deployed.
+This runbook defines the path from the current API foundation to a verified first deployment. It is a controlled implementation plan, not evidence that a service has already been deployed.
 
 ## Target release
 
-**Release 1:** Read-only CloudOps Inventory MVP in a non-production environment.
+**Release 1:** Read-only CloudOps Inventory API in a non-production environment.
 
-The initial release should expose only:
-- `GET /health` and `GET /ready`;
-- authenticated read-only inventory endpoints;
-- a provider-neutral inventory response contract;
-- sanitized audit events;
-- exportable inventory reports.
+Current API routes:
+- `GET /health` — public liveness check;
+- `GET /ready` — public readiness check;
+- `GET /v1/inventory` — bearer-authenticated inventory snapshot.
 
-Do not include infrastructure Apply, provisioning, deletion, network changes, database administration or automatic remediation in Release 1.
+The inventory endpoint currently returns `not_configured` and an empty resource list. There is no connected provider adapter yet. Do not expose infrastructure Apply, provisioning, deletion, network changes, database administration or automatic remediation in Release 1.
+
+## Implemented application foundation
+
+Location: `service/`
+
+- FastAPI application and typed provider-neutral inventory models.
+- Bearer token validation using `CLOUDOPS_API_TOKEN`; missing configuration fails closed.
+- Minimal public health and readiness probes.
+- Safe unconfigured inventory response; no fabricated resources.
+- API tests for health, readiness, missing configuration, missing/invalid credentials and response contract.
+- Dockerfile uses a non-root runtime user and health check.
+- GitHub Actions workflow installs test dependencies, runs pytest, builds the container and validates documentation/schema.
+
+The application code and CI workflow are committed on the development branch. CI success must be checked from an actual workflow run; repository commits alone are not evidence of passing tests.
 
 ## Recommended implementation shape
 
-- **API/runtime:** Python with FastAPI and typed request/response models.
-- **Provider integration:** official OCI Python SDK behind a narrow read-only adapter.
-- **State:** PostgreSQL for durable inventory snapshots and audit records once the data model is established.
+- **API/runtime:** Python 3.12 and FastAPI.
+- **Provider integration:** official OCI Python SDK behind a narrow read-only adapter; not yet implemented.
+- **State:** choose durable storage only when snapshot and audit persistence are implemented; PostgreSQL is the current recommendation.
 - **Packaging:** Docker image with a non-root runtime and health check.
 - **CI/CD:** GitHub Actions with protected deployment environments.
 - **Secrets:** hosting-provider secret store or approved external secret manager; never Git-tracked.
 - **Observability:** structured logs, health checks, metrics and sanitized audit records.
 
-These are engineering recommendations to validate during implementation, not existing deployed components.
-
 ## Step-by-step deployment sequence
 
-### Gate 1 — Product and repository readiness
+### Gate 1 — Repository and CI verification
 1. Review the product positioning and architecture.
-2. Confirm the accountable CloudOps owner and approvers.
-3. Confirm the first release is read-only and non-production.
-4. Implement the API, inventory contract, adapter interface and tests.
-5. Add a reproducible Docker build and local startup instructions.
-6. Validate the operation schema and CI workflow.
+2. Inspect the service source and tests.
+3. Confirm the GitHub Actions run passes on the latest commit.
+4. Review the container build output.
+5. Fix any failed test, security or packaging check before deploying.
 
-**Evidence required:** reviewed code, successful CI run, passing tests and a versioned release candidate.
+**Evidence required:** successful CI run for the release commit and passing API tests/container build.
 
 ### Gate 2 — Environment and cost readiness
 1. Select hosting provider and region.
-2. Create a dedicated development/staging environment.
-3. Set an explicit spending ceiling and alert recipients.
-4. Confirm quotas and any free-tier eligibility directly with the provider.
-5. Create a dedicated service identity with no write permissions.
-6. Configure secrets outside the repository.
+2. Confirm accountable platform owner and operational contact.
+3. Create a dedicated development/staging environment.
+4. Set an explicit spending ceiling and alert recipients.
+5. Confirm quotas and any free-tier eligibility directly with the provider.
+6. Generate a unique high-entropy `CLOUDOPS_API_TOKEN` for staging and store it in the host's secret manager.
 7. Document data classification, retention and recovery ownership.
 
-**Evidence required:** approved environment record, IAM policy review, cost limit and secret-handling review.
+**Evidence required:** approved environment record, cost limit, secret-handling review and deployment owner.
 
 ### Gate 3 — First application deployment
 1. Build the container from the reviewed commit.
-2. Deploy without OCI credentials first.
-3. Verify the application starts as a non-root process.
-4. Verify `/health` and `/ready`.
-5. Verify authentication rejects anonymous and unauthorized requests.
-6. Verify logs contain no secrets or sensitive payloads.
-7. Exercise rollback to the previous known-good image.
+2. Deploy without OCI credentials.
+3. Set `PORT` if the hosting platform requires a custom port; default is 8000.
+4. Verify the process runs as the non-root `cloudops` user.
+5. Verify `/health` and `/ready`.
+6. Verify `/v1/inventory` returns 401 without a bearer token.
+7. Verify it returns 200 with the staging token and reports `not_configured` with no resources.
+8. Verify logs contain no tokens or sensitive payloads.
+9. Exercise rollback to the previous known-good image.
 
-**Evidence required:** successful deployment identifier, service URL, health response, authentication test results and rollback record.
+**Evidence required:** deployment identifier, verified service URL, health responses, authentication tests and rollback record.
 
 ### Gate 4 — OCI read-only connection
-1. Review the OCI tenancy, compartment and region scope.
+1. Review OCI tenancy, compartment and region scope.
 2. Create a dedicated read-only identity/policy; do not use an administrator key.
 3. Store credentials in the approved secret manager.
-4. Enable the OCI adapter only in the staging environment.
-5. Test inventory reads against an approved compartment.
-6. Verify no create, update, delete or other mutation permission is granted.
-7. Record sanitized audit evidence and verify credential rotation/revocation.
+4. Implement the OCI adapter and its isolated tests.
+5. Enable the adapter only in staging.
+6. Verify inventory reads against an approved compartment.
+7. Verify no create, update, delete or other mutation permission is granted.
+8. Record sanitized audit evidence and verify credential rotation/revocation.
 
 **Evidence required:** reviewed policy, successful inventory test, negative mutation tests and audit record.
 
 ### Gate 5 — Production-readiness review
 1. Complete security and privacy review.
-2. Complete backup/restore and rollback exercises.
+2. Complete backup/restore and rollback exercises for any persistent state.
 3. Review operational dashboards, alerts and incident ownership.
 4. Verify regional/data-residency requirements for each target market.
 5. Review actual cost, quota and capacity.
@@ -91,8 +103,8 @@ These are engineering recommendations to validate during implementation, not exi
 - [ ] Health and readiness checks pass.
 - [ ] Authentication and authorization tests pass.
 - [ ] Inventory endpoints are read-only.
-- [ ] OCI policy is least-privilege and verified.
-- [ ] Audit events are sanitized and durable.
+- [ ] OCI policy is least-privilege and verified before adapter activation.
+- [ ] Audit events are sanitized and durable before production use.
 - [ ] Backup/restore and rollback are tested.
 - [ ] Budget ceiling, quota and alerts are configured.
 - [ ] Security, privacy and operational owners approve the target environment.
@@ -108,7 +120,8 @@ These are engineering recommendations to validate during implementation, not exi
 
 ## Current status
 
-The repository currently contains the product foundation, contract, governance documents and a validation workflow. The API, container, database, provider adapter, hosting environment, secrets, automated deployment and live service URL still need implementation and verification. No cloud account or paid infrastructure is connected by this repository change.
+The API foundation, security checks, tests, Dockerfile and CI workflow have been added to the development branch. The CI run still needs to be observed and verified. OCI integration, durable audit/state storage, hosting environment, secret configuration, deployment workflow and live service URL remain pending. No cloud account or paid infrastructure is connected by this repository change.
 
 **Working branch:** `feat/uriesmooth-cloudops-foundation`  
-**Organization repository:** [Uriesmooth-Group/Uriesmooth-Group](https://github.com/Uriesmooth-Group/Uriesmooth-Group)
+**Organization repository:** [Uriesmooth-Group/Uriesmooth-Group](https://github.com/Uriesmooth-Group/Uriesmooth-Group)  
+**Development PR:** [#9](https://github.com/Uriesmooth-Group/Uriesmooth-Group/pull/9)
