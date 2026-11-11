@@ -1524,3 +1524,17 @@ Global vision. Practical engineering. Built for growth.
 | [Uriesmooth Group website](https://github.com/Uriesmooth-Group/uriesmooth-group-website) | Static corporate website; primary .org CNAME, sitemap and robots files committed; GitHub Pages workflow passes | Custom-domain and DNS verification still required |
 
 A green CI workflow proves only the checks included in that workflow. It does not establish production security, operational reliability, regulatory approval, or public availability.
+
+---
+
+## Engineering standards and operating references
+
+The following company-wide standards apply across Uriesmooth Group repositories. They complement product-specific architecture and do not replace repository-level operating instructions.
+
+- [AI Engineering Quality Standard](docs/AI-ENGINEERING-QUALITY-STANDARD.md) — accepted-change quality, rework, discrepancy and human-correction measurement.
+- [AI Change Measurement Log](docs/AI-CHANGE-MEASUREMENT-LOG.md) — per-task evidence and controlled pilot register.
+- [Data Engineering Architecture Principles](docs/DATA-ENGINEERING-ARCHITECTURE-PRINCIPLES.md) — workload-led data technology selection, quality, governance and lifecycle.
+- [AI Core Engineering Measurement Integration](docs/AI-CORE-ENGINEERING-MEASUREMENT-INTEGRATION.md) — proposed authenticated event and acceptance-reporting contract; not a deployed gateway.
+- [CI and Pull Request Enforcement Plan](docs/CI-AND-PULL-REQUEST-ENFORCEMENT-PLAN.md) — repository-specific checks, review rules and staged enforcement gates.
+
+These documents define standards and plans. They do not, by themselves, prove product capabilities, compliance, deployment, or branch-protection enforcement.
