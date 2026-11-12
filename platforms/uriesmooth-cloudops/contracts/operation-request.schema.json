@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Uriesmooth CloudOps Operation Request",
+  "description": "Proposed request contract. This schema validates shape only; authorization and policy checks must be enforced server-side.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "request_id",
+    "idempotency_key",
+    "provider",
+    "operation",
+    "mode",
+    "environment",
+    "requested_by",
+    "target",
+    "reason"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 128
+    },
+    "provider": {
+      "type": "string",
+      "enum": [
+        "oci",
+        "aws",
+        "azure",
+        "gcp",
+        "local"
+      ]
+    },
+    "operation": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 80,
+      "pattern": "^[a-z][a-z0-9_.-]*$"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "observe",
+        "plan",
+        "apply",
+        "recover"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "enum": [
+        "development",
+        "test",
+        "staging",
+        "production"
+      ]
+    },
+    "requested_by": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 200
+    },
+    "target": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean"
+        ]
+      }
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000
+    },
+    "approval_reference": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 200
+    },
+    "change_window": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "estimated_monthly_cost": {
+      "type": "number",
+      "minimum": 0
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "apply"
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      },
+      "then": {
+        "required": [
+          "approval_reference",
+          "estimated_monthly_cost",
+          "currency"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "recover"
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      },
+      "then": {
+        "required": [
+          "approval_reference"
+        ]
+      }
+    }
+  ]
+}
