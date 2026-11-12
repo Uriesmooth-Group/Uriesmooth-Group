@@ -90,3 +90,33 @@ These are real open issues discovered in the organization tracker. They are cand
 | [FlowState Pro #2](https://github.com/Uriesmooth-Group/flowstate-pro/issues/2) — Implement durable PostgreSQL persistence for workflows and executions | flowstate-pro | Feature / infrastructure | Open — candidate | Unknown; capture prospectively |
 
 **Pilot sample status:** 4 of the target 10–15 candidate tasks identified. This is not yet a measured result. Add 6–11 more real tasks before drawing pilot conclusions. Do not backfill unknown measurements from estimates.
+
+
+## 2026-11-12 — Astra Core orchestration Milestone 2 implementation
+
+| Field | Value |
+|---|---|
+| Task ID / issue / PR | [Uriesmooth-AstraAi PR #7](https://github.com/Uriesmooth-Group/Uriesmooth-AstraAi/pull/7) |
+| Project / repository | Astra AI / `Uriesmooth-Group/Uriesmooth-AstraAi` |
+| Task class (bug, feature, refactor, infrastructure) | Feature |
+| Scope / acceptance criteria reference | [Milestone 2 design PR #6](https://github.com/Uriesmooth-Group/Uriesmooth-AstraAi/pull/6) and `docs/ASTRA_CORE_ORCHESTRATION_DESIGN.md` |
+| AI model and version | GPT-6 |
+| Agent/tool and configuration | ChatGPT GitHub connector; GitHub Actions Python 3.11 workflow |
+| Number of attempts | Unknown; do not infer from commit count |
+| Outcome (accepted, rejected, abandoned, open) | Open — draft PR; not accepted or merged |
+| Acceptance date / merge reference | Pending |
+| Human clarification minutes | Unknown |
+| Specification minutes | Unknown |
+| Verification/review minutes | Unknown |
+| Human rework minutes | Unknown |
+| Agent execution minutes | Unknown |
+| Agent waiting minutes | Unknown |
+| Calendar elapsed time | Unknown |
+| Model/token cost and currency | Unknown |
+| Other tooling/CI cost and currency | Unknown |
+| Rework return count | 0 reviewer-requested returns observed as of this entry; intermediate red CI runs are not counted as returns |
+| Rework causes (one per return) | None recorded |
+| Distinct requirement discrepancies | Unknown pending independent review |
+| Distinct human corrections | Unknown |
+| Revert/hotfix/production defect link | None; no merge or deployment |
+| Evidence / notes | Current PR head has 34 passing Python tests and a successful repository-health workflow. The repository-health workflow is a marker-only check. No production changes, credentials, external actions, or pilot execution. Record actual human review effort, any subsequent returns, and available costs when known. |
