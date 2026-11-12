@@ -179,6 +179,7 @@ Uriesmooth Website| Corporate digital presence
 Uriesmooth Commerce| Digital commerce
 Uriesmooth Delivery| Delivery and logistics technology
 Uriesmooth Credora| Responsible BNPL, credit, repayment and financial management
+Uriesmooth Cabora| Dedicated Buy Now, Pay Later (BNPL) product for eligible merchant purchases and transparent instalment repayment
 
 Additional Ventures and Initiatives
 
@@ -207,6 +208,15 @@ Planned technology capabilities include:
 Potential technology components include Python, TensorFlow, PyTorch, MediaPipe and WebRTC.
 
 Any deployment involving voice, likeness, facial or biometric data must include verifiable consent, data minimization, access controls and appropriate disclosure.
+
+Uriesmooth Cabora
+
+Product identity: Cabora by Uriesmooth.
+Positioning: Buy now. Pay responsibly. Move forward.
+
+Cabora is Uriesmooth Group's dedicated Buy Now, Pay Later (BNPL) product for eligible customers purchasing from participating merchants and repaying through clear, agreed instalments. Its product scope includes merchant checkout, eligibility and affordability assessment, explicit offer acceptance, repayment management, payment orchestration, risk controls and auditable financial records. Cabora is distinct from Credora and the Group's VTU applications. Its product foundation and engineering roadmap are maintained in [products/cabora](products/cabora/README.md).
+
+Cabora's intended financial architecture includes a durable Saga coordinator, immutable currency-aware double-entry ledger, PostgreSQL-backed idempotency, safe scheduled repayments, transactional outbox/inbox, payment reconciliation, versioned risk decisions and OpenTelemetry observability. These are implementation requirements, not a claim that live lending or payment services are operational.
 
 Uriesmooth Credora
 
