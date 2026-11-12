@@ -126,9 +126,18 @@ DECLARE
   v_credits NUMERIC(30,0);
   v_bad_account BIGINT;
 BEGIN
-  v_journal_id := COALESCE(NEW.id, OLD.id);
   IF TG_TABLE_NAME = 'cabora_journal_postings' THEN
-    v_journal_id := COALESCE(NEW.journal_entry_id, OLD.journal_entry_id);
+    IF TG_OP = 'DELETE' THEN
+      v_journal_id := OLD.journal_entry_id;
+    ELSE
+      v_journal_id := NEW.journal_entry_id;
+    END IF;
+  ELSE
+    IF TG_OP = 'DELETE' THEN
+      v_journal_id := OLD.id;
+    ELSE
+      v_journal_id := NEW.id;
+    END IF;
   END IF;
 
   SELECT state, currency INTO v_state, v_currency
@@ -179,13 +188,20 @@ BEGIN
     IF OLD.state = 'POSTED' THEN
       RAISE EXCEPTION 'Posted Cabora journal headers are immutable';
     END IF;
+    IF TG_OP = 'DELETE' THEN
+      RETURN OLD;
+    END IF;
     IF NEW.state = 'POSTED' THEN
       NEW.posted_at := COALESCE(NEW.posted_at, now());
     END IF;
     RETURN NEW;
   END IF;
 
-  v_journal_id := COALESCE(OLD.journal_entry_id, NEW.journal_entry_id);
+  IF TG_OP = 'DELETE' THEN
+    v_journal_id := OLD.journal_entry_id;
+  ELSE
+    v_journal_id := NEW.journal_entry_id;
+  END IF;
   SELECT state INTO v_state FROM cabora_journal_entries WHERE id = v_journal_id FOR UPDATE;
   IF v_state = 'POSTED' THEN
     RAISE EXCEPTION 'Postings belonging to a posted Cabora journal are immutable';
