@@ -1548,7 +1548,7 @@ The following company-wide standards apply across Uriesmooth Group repositories.
 - [AI Core Engineering Measurement Integration](docs/AI-CORE-ENGINEERING-MEASUREMENT-INTEGRATION.md) — proposed authenticated event and acceptance-reporting contract; not a deployed gateway.
 - [CI and Pull Request Enforcement Plan](docs/CI-AND-PULL-REQUEST-ENFORCEMENT-PLAN.md) — repository-specific checks, review rules and staged enforcement gates.
 
-These documents define standards and plans. They do not, by themselves, prove product capabilities, compliance, deployment, or branch-protection enforcement.
+These documents define standards and plans. They do not, by themselves, prove product capabilities, compliance, deployment, or branch-protection enforcement.\n\n### Uriesmooth Wallet foundation\n\nThe approved Uriesmooth Wallet product foundation is being developed in [`products/uriesmooth-wallet/`](products/uriesmooth-wallet/). It currently contains a demo-only web/API prototype, tests, product architecture, threat model, regulatory-readiness register, API contract and database design. Real payment, card enrollment, transfers and contactless capabilities remain disabled pending approved providers, legal review, security validation and certification. This work is on a feature branch and is not yet merged or deployed.
 
 ## Engineering programme and operating context
 

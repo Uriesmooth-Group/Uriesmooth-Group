@@ -1,0 +1,33 @@
+openapi: 3.1.0
+info:
+  title: Uriesmooth Wallet API
+  version: 0.1.0
+  description: Demonstration API contract. Payment capabilities are disabled.
+servers:
+  - url: http://localhost:8080
+paths:
+  /api/health:
+    get:
+      summary: Service health
+      responses:
+        '200':
+          description: Demo service health
+  /api/v1/wallet:
+    get:
+      summary: Wallet summary
+      responses:
+        '200':
+          description: Synthetic, non-customer wallet summary
+  /api/v1/transactions:
+    get:
+      summary: Demonstration transaction activity
+      responses:
+        '200':
+          description: Synthetic demonstration transactions
+  /api/v1/payment-methods:
+    post:
+      summary: Payment method enrollment (disabled)
+      description: Always unavailable until an approved tokenization provider is configured. Never send PAN, CVV, PIN, or track data.
+      responses:
+        '503':
+          description: Provider is not configured
