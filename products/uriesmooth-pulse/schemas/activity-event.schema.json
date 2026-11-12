@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://uriesmooth.org/schemas/pulse/activity-event.schema.json",
+  "title": "Uriesmooth Pulse Activity Event",
+  "description": "Proposed normalized event contract; not proof of an active producer.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "event_id", "source", "event_type", "occurred_at", "audience", "classification", "title", "source_url"],
+  "properties": {
+    "schema_version": {"type": "string", "const": "1.0.0"},
+    "event_id": {"type": "string", "minLength": 1, "maxLength": 200},
+    "source": {"type": "string", "minLength": 1, "maxLength": 100},
+    "source_record_id": {"type": "string", "maxLength": 200},
+    "source_version": {"type": "string", "maxLength": 100},
+    "event_type": {"type": "string", "pattern": "^[a-z][a-z0-9_]*(\\.[a-z][a-z0-9_]*)+$"},
+    "occurred_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "audience": {"type": "string", "enum": ["public", "partner", "internal", "executive"]},
+    "classification": {"type": "string", "enum": ["public", "partner", "internal", "restricted"]},
+    "title": {"type": "string", "minLength": 1, "maxLength": 240},
+    "summary": {"type": "string", "maxLength": 2000},
+    "source_url": {"type": "string", "format": "uri"},
+    "topics": {"type": "array", "maxItems": 20, "uniqueItems": true, "items": {"type": "string", "maxLength": 80}},
+    "locale": {"type": "string", "maxLength": 35},
+    "tenant_id": {"type": "string", "maxLength": 100},
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "connector": {"type": "string", "maxLength": 100},
+        "connector_version": {"type": "string", "maxLength": 50},
+        "ingested_at": {"type": "string", "format": "date-time"},
+        "content_hash": {"type": "string", "maxLength": 128}
+      }
+    },
+    "editorial": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {"type": "string", "enum": ["unreviewed", "draft", "approved", "rejected", "withdrawn"]},
+        "approved_by": {"type": "string", "maxLength": 200},
+        "approved_at": {"type": "string", "format": "date-time"}
+      }
+    }
+  }
+}

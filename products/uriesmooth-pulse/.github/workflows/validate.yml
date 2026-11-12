@@ -1,0 +1,35 @@
+name: Pulse foundation validation
+on:
+  pull_request:
+    paths:
+      - "products/uriesmooth-pulse/**"
+  push:
+    branches: [main]
+    paths:
+      - "products/uriesmooth-pulse/**"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate event schema JSON
+        run: python -m json.tool products/uriesmooth-pulse/schemas/activity-event.schema.json > /dev/null
+      - name: Check required foundation files
+        run: |
+          test -s products/uriesmooth-pulse/README.md
+          test -s products/uriesmooth-pulse/docs/ARCHITECTURE.md
+          test -s products/uriesmooth-pulse/docs/SECURITY-PRIVACY.md
+          test -s products/uriesmooth-pulse/web/index.html
+          test -s products/uriesmooth-pulse/email/digest-template.html
+      - name: Check for accidental credentials
+        run: |
+          if grep -RniE '(ghp_[A-Za-z0-9]{20,}|BEGIN (RSA|OPENSSH|EC) PRIVATE KEY|AKIA[0-9A-Z]{16})' products/uriesmooth-pulse; then
+            echo "Potential credential material found."
+            exit 1
+          fi
