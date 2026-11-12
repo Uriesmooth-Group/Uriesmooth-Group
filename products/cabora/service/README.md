@@ -24,6 +24,7 @@ No customer, merchant, credit decision, agreement, ledger posting or payment end
 npm install
 npm test
 npm run build
+npm run migrate # requires DATABASE_URL and migration-owner privileges
 npm run dev
 ```
 
@@ -36,4 +37,6 @@ The process can start without database or Redis configuration so liveness remain
 - Never commit connection strings, passwords, provider keys or customer data.
 - Use a restricted runtime database role; schema migrations must run under a separate migration-owner role.
 - Termination signals trigger HTTP server closure and dependency cleanup.
-- This is a service foundation, not a production financial API. Authentication, authorization, request validation, rate limiting, audit events, migration execution, deployment configuration and security review remain release gates.
+- `npm run migrate` applies ordered SQL files from `../db/migrations` under a PostgreSQL advisory lock. Each migration and its SHA-256 checksum are committed atomically in `cabora_schema_migrations`; changing an applied migration fails closed. Add a new forward migration instead.
+- Run migrations with a dedicated schema-owner role. The application runtime role must not have DDL privileges. Back up the target database and verify restore readiness before applying migrations in a hosted environment.
+- This is a service foundation, not a production financial API. Authentication, authorization, request validation, rate limiting, audit events, deployment configuration and security review remain release gates.
