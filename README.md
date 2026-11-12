@@ -1564,3 +1564,14 @@ The Credora product foundation is maintained at [products/uriesmooth-credora](pr
 **Status:** Deployment-ready starter scaffold committed; Railway provisioning is blocked by the connected workspace's free-plan resource limit. Not a production financial service.
 
 The dedicated `Uriesmooth-Group/uriesmooth-credora` repository remains a repository-creation task. Until it is created through an authorized GitHub repository-creation workflow, this foundation remains in the central company repository. Existing products, services and data are not being overwritten or migrated.
+
+
+---
+
+## Uriesmooth Cabora — Buy Now, Pay Later
+
+**Cabora by Uriesmooth** is the Group's dedicated Buy Now, Pay Later (BNPL) product, separate from Credora and the VTU applications. Its product foundation is maintained at [products/cabora](products/cabora/README.md).
+
+The Cabora foundation defines customer and merchant journeys, transparent BNPL offers, affordability and risk controls, repayment and payment reliability, privacy and financial integrity requirements, and an isolated monthly telecom data-benefit programme. The requested 15 GB monthly benefit for approved Airtel and MTN beneficiaries is documented without placing private beneficiary phone numbers in public source code.
+
+**Status:** product foundation and architecture documentation added; application runtime, provider integrations, staging/production deployment and live fulfilment are not yet implemented or verified. See the [Cabora delivery roadmap](products/cabora/docs/DELIVERY-ROADMAP.md) and [deployment runbook](products/cabora/docs/DEPLOYMENT.md).
