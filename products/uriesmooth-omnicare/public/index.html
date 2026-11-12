@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101a2c"><title>OmniCare | Uriesmooth Group</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#121e31;--panel2:#17263d;--line:#263a55;--text:#edf4ff;--muted:#91a4bd;--accent:#54d6c5;--blue:#76a9ff;--warn:#ffc76b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0%,#193354 0,transparent 35%),var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,Segoe UI,sans-serif}button,input{font:inherit}button{cursor:pointer;border:1px solid var(--line);border-radius:10px;background:#20334d;color:var(--text);padding:9px 13px}button.primary{background:var(--accent);color:#08201f;border:0;font-weight:700}.shell{display:grid;grid-template-columns:245px 1fr;min-height:100vh}.side{padding:25px 18px;border-right:1px solid var(--line);background:#0c1728}.brand{font-size:20px;font-weight:800;letter-spacing:.4px}.brand span{color:var(--accent)}.sub{color:var(--muted);font-size:12px;margin:3px 0 28px}.nav{display:grid;gap:7px}.nav button{text-align:left;background:transparent;border-color:transparent;color:var(--muted)}.nav button.active,.nav button:hover{background:var(--panel2);color:var(--text);border-color:var(--line)}main{padding:30px;max-width:1500px;width:100%;margin:auto}.top{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:25px}.eyebrow{color:var(--accent);font-size:11px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase}h1{font-size:30px;margin:4px 0}h2{font-size:18px;margin:0 0 15px}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.panel,.metric{background:linear-gradient(145deg,var(--panel),#101b2d);border:1px solid var(--line);border-radius:16px;padding:18px}.metric strong{font-size:26px;display:block;margin:6px 0}.metric small,.tiny{color:var(--muted)}.section{margin-top:18px}.wide{grid-column:span 2}.two{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}.pill{display:inline-block;padding:4px 9px;border-radius:99px;background:#193d42;color:var(--accent);font-size:11px}.actions{display:flex;flex-wrap:wrap;gap:8px}.bar{height:8px;background:#24354c;border-radius:9px;overflow:hidden;margin:9px 0 16px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--blue));width:72%}.hidden{display:none}.list{display:grid;gap:9px}.item{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:10px 0}.code{background:#08101d;border:1px solid var(--line);border-radius:10px;padding:14px;white-space:pre-wrap;overflow:auto;max-height:380px;font:12px/1.6 ui-monospace,monospace}.field{width:100%;background:#0a1423;border:1px solid var(--line);border-radius:9px;color:var(--text);padding:10px}.notice{border-left:3px solid var(--warn);padding:10px 13px;background:#2b261c;color:#f5dfb6;border-radius:6px;font-size:13px}.footer{margin-top:28px;color:var(--muted);font-size:12px}@media(max-width:950px){.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}@media(max-width:650px){.shell{grid-template-columns:1fr}.side{border-right:0;border-bottom:1px solid var(--line);padding:15px}.sub{margin-bottom:12px}.nav{display:flex;overflow:auto}.nav button{white-space:nowrap;padding:7px}main{padding:18px}.top{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr 1fr}.wide{grid-column:span 2}h1{font-size:25px}}
+</style></head>
+<body><div class="shell">
+<aside class="side"><div class="brand">URIESMOOTH <span>OMNICARE</span></div><div class="sub">Digital care workspace · Group platform</div>
+<nav class="nav" id="nav"><button class="active" data-view="dashboard">◈ Overview</button><button data-view="telemetry">◎ Telemetry ring</button><button data-view="windows">▣ Windows repair</button><button data-view="battery">ϟ Battery governor</button><button data-view="cleaner">⌁ Junk cleaner</button><button data-view="store">◇ Digital store</button><button data-view="repository">⌘ Source & version control</button></nav>
+<div class="footer">Uriesmooth Group<br>Engineering build 0.1.0</div></aside>
+<main><header class="top"><div><div class="eyebrow">Independent technology company</div><h1 id="heading">System overview</h1><div class="muted">A unified workspace for device care and source governance.</div></div><div class="actions"><span class="pill" id="health">Local interface ready</span><button id="export" class="primary">Download HTML</button></div></header>
+<section id="dashboard" class="view"><div class="grid">
+<div class="metric"><span class="muted">Care modules</span><strong>06</strong><small>Integrated workspace modules</small></div><div class="metric"><span class="muted">Repository link</span><strong id="repoState">Not checked</strong><small>Live GitHub API status</small></div><div class="metric"><span class="muted">Source export</span><strong>Ready</strong><small>Standalone HTML download</small></div><div class="metric"><span class="muted">Security mode</span><strong>Safe</strong><small>System actions require user review</small></div></div>
+<div class="two section"><div class="panel"><h2>OmniCare control centre</h2><p class="muted">Monitor the workspace, open care tools, and review source changes from one place.</p><div class="bar"><i></i></div><div class="actions"><button data-go="telemetry">Open telemetry</button><button data-go="repository">Repository workspace</button></div></div><div class="panel"><h2>Operational safeguards</h2><p class="notice">Repair commands are generated for review only. This web app does not execute Windows commands, change device settings, or delete files.</p></div></div></section>
+<section id="telemetry" class="view hidden"><div class="grid"><div class="metric"><span class="muted">Telemetry state</span><strong>Standby</strong><small>Browser-local demonstration</small></div><div class="metric"><span class="muted">Events</span><strong id="events">0</strong><small>Session events generated</small></div><div class="metric"><span class="muted">Data transport</span><strong>Off</strong><small>No telemetry uploaded</small></div><div class="metric"><span class="muted">Privacy</span><strong>Local</strong><small>No device fingerprinting</small></div></div><div class="panel section"><h2>Telemetry ring</h2><p class="muted">A visual status ring for local UI events. Connect approved telemetry sources only after defining consent, retention and access controls.</p><div class="bar"><i id="telebar"></i></div><button id="eventBtn">Generate local test event</button></div></section>
+<section id="windows" class="view hidden"><div class="panel"><h2>Windows Update & SFC repair generator</h2><p class="muted">Generate a reviewable maintenance checklist. Run commands only in an elevated Windows terminal after backing up important data.</p><div class="actions"><button id="repair">Generate safe repair sequence</button><button id="copyRepair">Copy commands</button></div><pre class="code" id="repairCode">Select “Generate safe repair sequence” to view commands.</pre><p class="tiny">Commands are informational and are not executed by OmniCare.</p></div></section>
+<section id="battery" class="view hidden"><div class="panel"><h2>Battery governor</h2><p class="muted">Choose a suggested usage profile. This interface does not apply power settings to your device.</p><div class="grid"><div class="metric"><span class="muted">Saver</span><strong>Low</strong><small>Reduced background activity</small><button data-profile="Saver">Select</button></div><div class="metric"><span class="muted">Balanced</span><strong>Normal</strong><small>Everyday workloads</small><button data-profile="Balanced">Select</button></div><div class="metric"><span class="muted">Performance</span><strong>High</strong><small>Prioritize responsiveness</small><button data-profile="Performance">Select</button></div><div class="metric"><span class="muted">Selected profile</span><strong id="profile">Balanced</strong><small>Recommendation only</small></div></div></div></section>
+<section id="cleaner" class="view hidden"><div class="panel"><h2>Junk cleaner</h2><p class="muted">A safe cleanup planner. No files are scanned, selected or deleted by this browser interface.</p><div class="grid"><div class="metric"><span class="muted">Temporary files</span><strong>Review</strong><small>Inspect before removal</small></div><div class="metric"><span class="muted">Downloads</span><strong>Review</strong><small>Keep personal files</small></div><div class="metric"><span class="muted">Recycle Bin</span><strong>Review</strong><small>Restore needed items first</small></div><div class="metric"><span class="muted">Cleanup status</span><strong>Not run</strong><small>No destructive action taken</small></div></div><div class="notice section">Always inspect paths and contents before deleting. Back up important files first.</div></div></section>
+<section id="store" class="view hidden"><div class="panel"><h2>OmniCare Digital Store</h2><p class="muted">Catalog foundation for future verified digital products and services.</p><div class="grid"><div class="metric"><span class="pill">Coming soon</span><strong>Utilities</strong><small>Curated productivity tools</small></div><div class="metric"><span class="pill">Coming soon</span><strong>Security</strong><small>Trusted protection resources</small></div><div class="metric"><span class="pill">Coming soon</span><strong>Learning</strong><small>Digital skills and guides</small></div><div class="metric"><span class="pill">Coming soon</span><strong>Cloud tools</strong><small>Automation and services</small></div></div></div></section>
+<section id="repository" class="view hidden"><div class="two"><div class="panel"><h2>Source repository & version control</h2><p class="muted" id="repoMeta">Connect to the configured GitHub repository through the server API.</p><div class="actions"><button class="primary" id="refreshRepo">Refresh live data</button><button id="copySource">Copy full source</button><button id="downloadSource">Download .html</button></div><div class="list section" id="branches"></div></div><div class="panel"><h2>Repository metadata</h2><div class="list" id="metadata"><div class="item"><span>Status</span><b>Not loaded</b></div></div></div></div>
+<div class="two section"><div class="panel"><h2>Recent commits</h2><div class="list" id="commits"><span class="muted">Refresh to load actual commit history.</span></div></div><div class="panel"><h2>package.json manifest</h2><pre class="code" id="manifest">Manifest loads from GitHub when configured.</pre></div></div>
+<div class="panel section"><h2>Interactive HTML source viewer</h2><p class="tiny">Displays the current OmniCare HTML source retrieved from the configured repository.</p><pre class="code" id="sourceView">Source not loaded.</pre></div>
+<div class="notice section">GitHub access is server-side. Configure a read-only fine-grained token in the deployment environment. The token is never sent to the browser or included in exports. Synchronization is reported as unavailable when the API cannot verify it.</div></section>
+<footer class="footer">Uriesmooth Group · OmniCare · This build is a foundation, not a certified diagnostic or repair utility.</footer>
+</main></div>
+<script>
+const $=s=>document.querySelector(s);let repoData=null;let localSource="";
+const titles={dashboard:"System overview",telemetry:"Telemetry ring",windows:"Windows repair generator",battery:"Battery governor",cleaner:"Junk cleaner",store:"OmniCare Digital Store",repository:"Source & version control"};
+function show(view){document.querySelectorAll(".view").forEach(x=>x.classList.toggle("hidden",x.id!==view));document.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x.dataset.view===view));$("#heading").textContent=titles[view]||"OmniCare";}
+$("#nav").addEventListener("click",e=>{const b=e.target.closest("[data-view]");if(b)show(b.dataset.view)});document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>show(b.dataset.go)));
+$("#eventBtn").onclick=()=>{$("#events").textContent=String(Number($("#events").textContent)+1);$("#telebar").style.width=(20+Math.random()*75)+"%"};
+$("#repair").onclick=()=>{$("#repairCode").textContent="DISM /Online /Cleanup-Image /CheckHealth\nDISM /Online /Cleanup-Image /ScanHealth\nDISM /Online /Cleanup-Image /RestoreHealth\nsfc /scannow";};
+$("#copyRepair").onclick=()=>navigator.clipboard?.writeText($("#repairCode").textContent);
+document.querySelectorAll("[data-profile]").forEach(b=>b.onclick=()=>$("#profile").textContent=b.dataset.profile);
+function exportHtml(){const clone=document.documentElement.cloneNode(true);clone.querySelectorAll(".view").forEach(x=>x.classList.toggle("hidden",x.id!=="dashboard"));clone.querySelectorAll("#nav button").forEach(x=>x.classList.toggle("active",x.dataset.view==="dashboard"));const blob=new Blob(["<!doctype html>\n"+clone.outerHTML],{type:"text/html;charset=utf-8"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="uriesmooth_omnicare.html";a.click();URL.revokeObjectURL(url)}
+$("#export").onclick=exportHtml;$("#downloadSource").onclick=exportHtml;
+$("#copySource").onclick=async()=>{try{await navigator.clipboard.writeText(document.documentElement.outerHTML);$("#health").textContent="Source copied"}catch{$("#health").textContent="Clipboard unavailable"}};
+function addRow(parent, label, value) {
+  const row=document.createElement("div"); row.className="item";
+  const left=document.createElement("span"); left.textContent=label;
+  const right=document.createElement("b"); right.textContent=String(value ?? "Unknown");
+  row.append(left,right); parent.append(row);
+}
+async function refreshRepo(){
+  show("repository"); $("#repoMeta").textContent="Loading live GitHub data…";
+  try {
+    const response=await fetch("/api/repository");
+    if(!response.ok) throw new Error("API status "+response.status);
+    repoData=await response.json();
+    $("#repoMeta").textContent=repoData.metadata.fullName+" · "+repoData.configuredBranch;
+    $("#repoState").textContent="Connected"; $("#health").textContent="Repository data verified";
+    const metadata=$("#metadata"); metadata.replaceChildren();
+    [["Visibility",repoData.metadata.private?"Private":"Public"],["Default branch",repoData.metadata.defaultBranch],["Branches",repoData.branches.length],["Open issues",repoData.metadata.openIssues],["Last push",repoData.metadata.pushedAt||"Unknown"],["Fetched",repoData.fetchedAt]].forEach(([k,v])=>addRow(metadata,k,v));
+    const branches=$("#branches"); branches.replaceChildren();
+    repoData.branches.forEach(branch=>{
+      const row=document.createElement("div"); row.className="item";
+      const name=document.createElement("span"); name.textContent=branch.name;
+      const sha=document.createElement("code"); sha.textContent=branch.sha.slice(0,7);
+      row.append(name,sha); branches.append(row);
+    });
+    const commits=$("#commits"); commits.replaceChildren();
+    repoData.commits.forEach(commit=>{
+      const row=document.createElement("div"); row.className="item";
+      const info=document.createElement("span");
+      const link=document.createElement("a"); link.style.color="var(--blue)"; link.href=commit.url;
+      link.target="_blank"; link.rel="noopener noreferrer"; link.textContent=commit.shortSha;
+      const message=document.createTextNode(" · "+commit.message.split("\n")[0].slice(0,70));
+      const details=document.createElement("small"); details.className="muted";
+      details.textContent=commit.author+" · "+(commit.date||"Unknown");
+      info.append(link,message,document.createElement("br"),details); row.append(info); commits.append(row);
+    });
+    $("#manifest").textContent=repoData.manifest||"package.json not found at configured product path.";
+    $("#sourceView").textContent=repoData.source||"HTML source not found at configured product path.";
+  } catch(error) {
+    $("#repoState").textContent="Unavailable"; $("#health").textContent="GitHub data unavailable";
+    $("#repoMeta").textContent="Could not verify repository status: "+error.message;
+    $("#commits").textContent="Live commit history unavailable. No sample data is shown.";
+  }
+}
+$("#refreshRepo").onclick=refreshRepo;$("#nav").addEventListener("click",e=>{if(e.target.closest('[data-view="repository"]'))refreshRepo()});
+fetch("/api/health").then(r=>r.json()).then(d=>$("#health").textContent="API "+d.status).catch(()=>{$("#health").textContent="Standalone mode"});
+</script></body></html>

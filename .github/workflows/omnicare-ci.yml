@@ -1,0 +1,26 @@
+name: OmniCare CI
+on:
+  push:
+    paths:
+      - "products/uriesmooth-omnicare/**"
+      - ".github/workflows/omnicare-ci.yml"
+  pull_request:
+    paths:
+      - "products/uriesmooth-omnicare/**"
+      - ".github/workflows/omnicare-ci.yml"
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        working-directory: products/uriesmooth-omnicare
+        run: npm install --no-audit --no-fund
+      - name: Check server syntax
+        working-directory: products/uriesmooth-omnicare
+        run: npm run check
