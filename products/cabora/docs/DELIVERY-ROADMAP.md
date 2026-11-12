@@ -14,19 +14,22 @@
 - [ ] Implement Node.js LTS / TypeScript service scaffold.
 - [ ] Add configuration validation and safe startup behavior.
 - [ ] Add liveness and readiness endpoints.
-- [ ] Add PostgreSQL migrations and database health checks.
-- [ ] Add Redis queue adapter for non-authoritative background coordination.
-- [ ] Add structured logging, redaction and correlation IDs.
-- [ ] Add unit, integration and contract test workflows.
+- [ ] Add PostgreSQL migrations, transactional outbox/inbox and database health checks.
+- [ ] Implement immutable double-entry ledger posting with deferred balance validation and concurrency tests.
+- [ ] Implement durable Saga orchestration and compensating actions.
+- [ ] Add Redis/BullMQ queue adapter for non-authoritative background coordination; persist all financial job state in PostgreSQL.
+- [ ] Add structured logging, redaction, OpenTelemetry tracing and correlation propagation.
+- [ ] Add unit, integration, concurrency, ledger-invariant and provider contract test workflows.
+- [ ] Add CQRS read projections only where measured query needs justify them.
 - [ ] Add Docker and GitHub Actions CI.
 
 ## Phase 2 — Core BNPL
 
 - [ ] Customer identity, consent and account controls.
 - [ ] Merchant onboarding and settlement configuration.
-- [ ] Versioned eligibility and affordability policies.
+- [ ] Versioned eligibility and affordability policies with auditable decisions, latency budgets and fairness review.
 - [ ] Quote, disclosure, offer and explicit agreement acceptance.
-- [ ] Durable repayment schedule and state machine.
+- [ ] Durable repayment schedule, payment-attempt state machine, provider idempotency and UNKNOWN-outcome reconciliation.
 - [ ] Financial ledger and posting invariants.
 - [ ] Payment provider adapter, webhook inbox and idempotency.
 - [ ] Refund, cancellation, dispute and reconciliation flows.
