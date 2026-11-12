@@ -15,7 +15,7 @@
 - [ ] Add configuration validation and safe startup behavior.
 - [ ] Add liveness and readiness endpoints.
 - [x] Add initial PostgreSQL migration for accounts, immutable journal headers/lines, agreements, installments, payment attempts and transactional outbox (execution against PostgreSQL still pending).
-- [ ] Add migration runner, rollback/forward-fix policy and database health checks.
+- [ ] Add versioned migration runner, checksum tracking and forward-fix policy; validate migration against PostgreSQL 16+.
 - [ ] Add transactional inbox and provider webhook deduplication.
 - [ ] Execute ledger migration verification plan against PostgreSQL, including deferred balance validation, immutability and concurrency tests.
 - [ ] Add database role/permission hardening and tested journal reversal workflows.
