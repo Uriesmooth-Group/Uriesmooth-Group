@@ -92,3 +92,20 @@ Critical financial state must not depend on ephemeral queue state.
 - Metrics for authorization, payment outcomes, reconciliation backlog and job failures.
 - Encrypted backups and tested restore procedures.
 - Documented incident, rollback and key-rotation procedures.
+
+
+## Saga orchestration, ledger, risk and CQRS
+
+Cabora's multi-step checkout must use a durable Saga state machine with persisted steps, timeouts and business compensations. Compensations release reservations, void eligible authorizations or post linked reversals; they do not erase financial history. The Saga and every step must be idempotent and protected against concurrent advancement.
+
+The ledger is a PostgreSQL-backed, immutable, currency-aware double-entry subsystem. Each posted journal must balance per currency, contain valid debit/credit lines and be protected from update/delete by database permissions and controlled posting procedures. Corrections use linked compensating journals. Balance projections must be rebuildable from posted entries.
+
+Credit decisions use versioned affordability and risk policies, recorded evidence provenance and reason codes. A low-latency decision objective must be measured with p95/p99 budgets and safe timeout behavior. TensorRT/GPU inference is optional and requires benchmark, model validation, fairness and governance; it is not a prerequisite or an automatic approval authority.
+
+The repayment scheduler may use BullMQ/Redis initially, but PostgreSQL remains authoritative for obligations, attempts and outcomes. Workers revalidate agreement and installment state before dispatch, use provider idempotency, and reconcile UNKNOWN outcomes before retrying. Never rely on expiring Redis keys or queue job IDs as the sole duplicate-charge protection.
+
+Use transactional outbox/inbox patterns for durable event publication and provider webhook processing. OpenTelemetry should propagate W3C trace context across HTTP and worker boundaries. Correlation IDs are diagnostic only, never financial idempotency keys or authorization credentials.
+
+CQRS can begin with PostgreSQL write tables and indexed read projections. Add a dedicated search/analytics store only when measured needs justify it; Elasticsearch/OpenSearch and MongoDB are optional, not mandatory. Read models must be rebuildable and must not become competing financial sources of truth.
+
+See [Financial and distributed-systems engineering design](FINANCIAL-AND-DISTRIBUTED-SYSTEMS-DESIGN.md) for the detailed schema review, scheduler safeguards, tracing design and acceptance gates.
