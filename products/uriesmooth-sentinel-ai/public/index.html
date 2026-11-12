@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <title>Sentinel AI · Uriesmooth Group</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="mark">S</span><div><strong>Uriesmooth Sentinel AI</strong><small>Company operations intelligence</small></div></div>
+    <span class="environment">MVP · DEVELOPMENT</span>
+  </header>
+  <main class="layout">
+    <section class="intro">
+      <div><p class="eyebrow">URIESMOOTH GROUP</p><h1>Company command centre</h1><p class="muted">Projects, delivery timelines and operational visibility in one workspace.</p></div>
+      <div class="connection"><span id="healthDot" class="dot"></span><span id="healthText">Checking service…</span></div>
+    </section>
+    <section class="auth panel">
+      <div><h2>Secure workspace access</h2><p class="muted">Enter the Sentinel admin token supplied by your administrator. It is held in page memory only.</p></div>
+      <div class="auth-controls"><input id="token" type="password" autocomplete="off" placeholder="Sentinel admin token" aria-label="Sentinel admin token"><button id="connect">Connect</button></div>
+      <p id="notice" class="notice" role="status"></p>
+    </section>
+    <section class="metrics">
+      <article class="metric panel"><span>Projects</span><strong id="projectCount">—</strong></article>
+      <article class="metric panel"><span>Open tasks</span><strong id="openCount">—</strong></article>
+      <article class="metric panel"><span>Blocked</span><strong id="blockedCount">—</strong></article>
+      <article class="metric panel"><span>Completed</span><strong id="doneCount">—</strong></article>
+    </section>
+    <section class="panel">
+      <div class="section-head"><div><p class="eyebrow">PORTFOLIO</p><h2>Projects</h2></div><button class="secondary" id="showProjectForm">New project</button></div>
+      <div id="projectForm" class="form-grid hidden">
+        <input id="projectName" placeholder="Project name" maxlength="120">
+        <input id="projectSlug" placeholder="project-slug">
+        <input id="projectStart" type="date" aria-label="Project start date">
+        <input id="projectTarget" type="date" aria-label="Target date">
+        <button id="createProject">Create project</button>
+      </div>
+      <div id="projects" class="project-list"><p class="muted">Connect to load company projects.</p></div>
+    </section>
+    <section class="panel">
+      <div class="section-head"><div><p class="eyebrow">DELIVERY MANAGEMENT</p><h2>Timeline & Gantt view</h2></div><button class="secondary" id="showTaskForm">Add task</button></div>
+      <p id="selectedProject" class="muted">Select a project to view its schedule.</p>
+      <div id="taskForm" class="form-grid hidden">
+        <input id="taskTitle" placeholder="Task title" maxlength="200">
+        <select id="taskPriority"><option value="p2">P2 · Normal</option><option value="p0">P0 · Critical</option><option value="p1">P1 · High</option><option value="p3">P3 · Low</option></select>
+        <input id="taskStart" type="date" aria-label="Task start date">
+        <input id="taskDue" type="date" aria-label="Task due date">
+        <label class="check"><input id="taskMilestone" type="checkbox"> Milestone</label>
+        <button id="createTask">Save task</button>
+      </div>
+      <div id="gantt" class="gantt"><p class="muted">Your project timeline will appear here.</p></div>
+    </section>
+    <footer>UriesmoothTech Ltd · Internal operations tool · Evidence over assertion</footer>
+  </main>
+  <script src="/app.js" defer></script>
+</body>
+</html>

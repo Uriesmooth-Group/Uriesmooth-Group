@@ -1,0 +1,25 @@
+name: Sentinel AI MVP CI
+on:
+  push:
+    paths:
+      - "products/uriesmooth-sentinel-ai/**"
+  pull_request:
+    paths:
+      - "products/uriesmooth-sentinel-ai/**"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: products/uriesmooth-sentinel-ai
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm run build
+      - run: node --check public/app.js
