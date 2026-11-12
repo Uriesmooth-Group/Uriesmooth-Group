@@ -11,11 +11,11 @@
 
 ## Phase 1 — Technical foundation
 
-- [ ] Implement Node.js LTS / TypeScript service scaffold.
+- [x] Implement Node.js LTS / TypeScript service scaffold (implementation committed; local build and runtime verification pending).
 - [ ] Add configuration validation and safe startup behavior.
-- [ ] Add liveness and readiness endpoints.
+- [x] Add liveness and readiness endpoints (unit tests and hosted CI result still pending).
 - [x] Add initial PostgreSQL migration for accounts, immutable journal headers/lines, agreements, installments, payment attempts and transactional outbox (execution against PostgreSQL still pending).
-- [ ] Add versioned migration runner, checksum tracking and forward-fix policy; validate migration against PostgreSQL 16+.
+- [x] Add ordered migration runner, PostgreSQL advisory lock, SHA-256 checksum tracking and fail-closed forward-fix policy (execution against PostgreSQL 16+ still pending).
 - [ ] Add transactional inbox and provider webhook deduplication.
 - [ ] Execute ledger migration verification plan against PostgreSQL, including deferred balance validation, immutability and concurrency tests.
 - [ ] Add database role/permission hardening and tested journal reversal workflows.
