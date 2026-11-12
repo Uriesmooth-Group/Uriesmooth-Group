@@ -14,8 +14,11 @@
 - [ ] Implement Node.js LTS / TypeScript service scaffold.
 - [ ] Add configuration validation and safe startup behavior.
 - [ ] Add liveness and readiness endpoints.
-- [ ] Add PostgreSQL migrations, transactional outbox/inbox and database health checks.
-- [ ] Implement immutable double-entry ledger posting with deferred balance validation and concurrency tests.
+- [x] Add initial PostgreSQL migration for accounts, immutable journal headers/lines, agreements, installments, payment attempts and transactional outbox (execution against PostgreSQL still pending).
+- [ ] Add migration runner, rollback/forward-fix policy and database health checks.
+- [ ] Add transactional inbox and provider webhook deduplication.
+- [ ] Execute ledger migration verification plan against PostgreSQL, including deferred balance validation, immutability and concurrency tests.
+- [ ] Add database role/permission hardening and tested journal reversal workflows.
 - [ ] Implement durable Saga orchestration and compensating actions.
 - [ ] Add Redis/BullMQ queue adapter for non-authoritative background coordination; persist all financial job state in PostgreSQL.
 - [ ] Add structured logging, redaction, OpenTelemetry tracing and correlation propagation.
