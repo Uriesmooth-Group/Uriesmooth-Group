@@ -1,0 +1,36 @@
+name: Cabora Service CI
+
+on:
+  push:
+    branches:
+      - feat/cabora-bnpl-foundation
+    paths:
+      - "products/cabora/service/**"
+      - ".github/workflows/cabora-service.yml"
+  pull_request:
+    paths:
+      - "products/cabora/service/**"
+      - ".github/workflows/cabora-service.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: products/cabora/service
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install --no-package-lock
+      - name: Run unit tests
+        run: npm test
+      - name: Build TypeScript
+        run: npm run build
