@@ -68,6 +68,7 @@ Do not introduce microservices until scale, ownership or isolation requirements 
 
 ## Documentation
 
+- [Financial and distributed-systems engineering design](docs/FINANCIAL-AND-DISTRIBUTED-SYSTEMS-DESIGN.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [BNPL product and customer journeys](docs/BNPL-PRODUCT-FLOWS.md)
 - [Security, privacy and responsible credit](docs/SECURITY-PRIVACY-AND-RISK.md)
